@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <h1 class="title is-1">Listing APP</h1>
+
+    <form action="/add" method="POST">
+        <div>
+            <input class="input is-primary" for="text" name="title" placeholder="Enter Todo..."></input>
+            <br>
+            <br>
+            <p class="has-text-centered">
+            <button class="button is-primary" type="submit">ADD</button>
+        </p>
+        </div>
+    </form>
+    <br>
+
+    {% for todo in todo_list %}
+    <div class="box">
+        <p> {{ todo.id }} | {{todo.title }} </p>
+        {% if todo.complete == False%}
+            <span>Not complete</span>
+        {% else %}
+            <span>Completed</span>
+        {% endif %}
+        <br>
+        <br>
+        <a class="button is-primary" href="/update/{{ todo.id }}">Update</a>
+        <a class="button is-secondary" href="/delete/{{ todo.id }}">Delete</a>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
